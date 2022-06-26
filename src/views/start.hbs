@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <pre>Rules -
+        ● Paper beats Rock
+        ● Rock beats Scissors
+        ● Scissors beats Paper
+        1) All user input values are going to be generated via random numbers. No need
+        for a user input mechanism.
+        2) It will be a 4 player game.
+        3) Each player will randomly choose either of the three (Rock, Paper or
+        Scissors). Calculate the results for each player in respect to every
+        other player based on the choices made.
+        4) The above should be repeated 50 times.
+        5) Return a JSON response with the results of each iteration.
+    </pre>
     <form action="/game/start" method="post">
-    <button type="submit">Start Game</button>
+        <button type="submit">Start Game</button>
     </form>
 </body>
+
 </html>

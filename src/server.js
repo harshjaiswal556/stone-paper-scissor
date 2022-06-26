@@ -1,22 +1,27 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
-const game = require("./models/schema");
+const game = require("./models/schema");  //Connecting schema to the server.
 const fs = require("fs");
-require("./db/conn");
+const path = require("path");
+require("./db/conn");  //Connecting mongoose to the server.
 
-app.set('view engine', 'hbs');
+app.set('view engine', 'hbs');  //Setting up view engine to handlebars
 
+const staticPath = path.join(__dirname,"/views");
+app.set("views",staticPath);
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 app.get("/", (req, res) => {
     res.render("index");
 });
+
 app.get("/game/start", (req, res) => {
     res.render("start");
 })
-// fs.appendFileSync("game.json","[");
+
+//Using POST method to save the data in the form of JSON
 app.post("/game/start", (req, res) => {
     fs.appendFileSync("game.txt","[");
     for (let k = 0; k < 50; k++) {
@@ -102,8 +107,10 @@ app.post("/game/start", (req, res) => {
 
     fs.appendFileSync("game.txt","]");
     fs.renameSync("game.txt","game.json");
-    res.send("Game data is stored");
+    res.send("Game data is stored. Visit /game/result");
 });
+
+//Using GET method to display the game data
 
 app.get("/game/result",async(req,res) => {
     try{
